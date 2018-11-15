@@ -1,0 +1,117 @@
+
+# Various general settings
+#
+# *** ALL VOLTAGES ARE GIVEN IN mA ***
+#
+
+task_settings:
+  n_sessions: 4  # Number of sessions (blocks) # changed from 3
+  n_blocks: 4  # Number of blocks per session (mini-block) including catch blocks # changed from 5
+  n_confidence_practice: 5  # Number of tries practicing the confidence rating
+
+  # Voltages used for practice
+  low: 5  # Low voltage
+  high: 25  # High voltage
+
+  # Number of trials in practice
+  practice_n_stim: 1  # Number of trials where stimulation is given
+  practice_n_no_stim: 1  # Number of trials where no stimulation is given
+
+  # Parallel port
+  parallel_port_number: 888
+
+  # Window settings
+  fullscreen: True
+
+  # Trial settings
+
+  # These give the number of trials at a particular detection threshold for each mini-block, catch blocks included
+  # 4 sessions, 4 mini-blocks per session, 3rd mini block is a catch block; most catch removed
+  n_p0: !!python/tuple [2, 8, 0, 11,  12, 13, 0, 14,  14, 14, 0, 14,  14, 14, 0 14]
+  n_p25: !!python/tuple [1, 4, 0, 5,  7, 7, 0, 6,  7, 7, 0, 7,  7, 7, 0, 7]
+  n_p50: !!python/tuple [1, 4, 0, 6,  6, 6, 0, 7,  7, 7, 0, 7,  7, 7, 0, 7]
+  n_p75: !!python/tuple [26, 14, 2, 8,  5, 4, 2, 3,  2, 2, 2, 2,  2, 2, 2, 2]
+
+  # Catch trials - indicates which trials in the session are catch trials (repeated for each session)
+  catch_trials: !!python/tuple [False, False, True, False]
+
+
+# Settings for the QUEST calibration
+quest_settings:
+  n_trials: 70  # Number of calibration trials
+  start_value: 20  # Starting voltage
+  start_sd: 5  # SD of starting voltage
+  max_value: 50  # Maximum voltage
+
+  # Weibull function parameters
+  beta: 0.1
+  delta: 0.01
+  gamma: 0.01
+  grain: 0.01
+
+  # Default detection threshold voltages - useful if you just want to run the task without calibration
+  default_p0: 20
+  default_p25: 30
+  default_p50: 40
+  default_p75: 50
+
+  # Number of initial trials to ignore
+  n_ignored: 10
+
+# Timings for various aspects of the task
+durations:
+  initial_fixation_time: 3
+  ramp_up_time: 0.2  # Duration of ramp up for pain/visual stimuli
+  hold_time: 0.5 # Time to sustain stimulation after ramp up
+  ramp_down_time: 0.15 # Time taken to decrease stimulation
+  response_time: 15 # Maximum time given to make a response
+
+# Settings related to visual stimuli
+stimuli:
+  checkerboard_max_alpha: 0.5  # Maximum opacity of the checkerboard stimulus
+  fixation_size: 2  # Size of the fixation cross
+  question_mark_size: 5  # Size of the question mark used on fixation trials
+  text_size: 0.8  # Size of instruction text
+
+# Settings for stimulation
+stimulation:
+
+  # DAQ settings
+  device: 'Dev1'
+
+  # Baseline voltage fluctuations
+  baseline_interval: 0  # How frequently the baseline voltage changes
+  baseline_mean: 0  # Mean of baseline voltage
+  baseline_sd: 0  # SD of baseline voltage distribution
+
+  # Maximum voltage in mA - stimulation will never exceed this
+  absolute_maximum_voltage: 50
+
+  # Voltage to use on catch trials
+  catch_intensity: 1
+
+# Text files used for instructions
+instructions:
+  start_instructions: 'instructions/start_instructions.txt'  # Instructions show at the start of the task
+  confidence_rating_instructions: 'instructions/confidence_rating_instructions.txt'  # Instructions shown before confidence scale practice
+  confidence_practice_instructions: 'instructions/confidence_practice_instructions.txt'  # Instructions shown before confidence practice trials
+  quest_instructions: 'instructions/quest_instructions.txt'  # Instructions shown before QUEST
+  task_instructions: 'instructions/task_instructions.txt'  # Instructions shown before task begins
+  break_instructions: 'instructions/break_instructions.txt'  # Instructions shown in between sessions
+  end_instructions: 'instructions/end_instructions.txt'  # Text shown at the end of the task
+
+# Relevant directories
+directories:
+  saved_data: 'data'  # Where to save data to
+
+# Response keys
+response_keys:
+  pain_key: 'a'  # Key to press if pain detected
+  no_pain_key: 'l'  # Key to press if no pain detected
+
+# Nice fonts because I hate arial
+fonts:
+  font_path: 'fonts/OpenSans-Regular.ttf'
+  font_name: 'Open Sans'
+
+
